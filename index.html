@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ふしぎモンスター・チューニング大会</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="game-column" aria-label="ゲーム">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">プログラミング教室ミニゲーム</p>
+            <h1>ふしぎモンスター・チューニング大会</h1>
+          </div>
+          <div class="best-box">
+            <span id="bestTitle">ベスト</span>
+            <strong id="bestScore">0</strong>
+          </div>
+        </header>
+
+        <nav class="play-mode-tabs" aria-label="あそびかた">
+          <button class="play-mode-button is-active" data-play-mode="free" type="button">
+            自由に遊ぼう
+          </button>
+          <button class="play-mode-button" data-play-mode="battle" type="button">
+            AIと対戦
+          </button>
+        </nav>
+
+        <section class="battle-board is-hidden" id="battleBoard" aria-label="AI対戦">
+          <div class="ai-card">
+            <span>AI</span>
+            <strong id="aiName">チューニングAI</strong>
+            <small id="aiNote">相手の作戦を見て、勝てる改造を考えよう。</small>
+          </div>
+          <div class="battle-results" id="battleResults"></div>
+          <div class="battle-actions">
+            <button class="battle-button" id="battleStartButton" type="button">この改造で対戦</button>
+            <button class="battle-button is-hidden" id="battleNextButton" type="button">次の種目へ</button>
+          </div>
+        </section>
+
+        <nav class="mode-tabs" aria-label="きょうぎ">
+          <button class="mode-button is-active" data-mode="collect" type="button">
+            <span>★</span>
+            おたから
+          </button>
+          <button class="mode-button" data-mode="sumo" type="button">
+            <span>◎</span>
+            すもう
+          </button>
+          <button class="mode-button" data-mode="jump" type="button">
+            <span>↗</span>
+            ジャンプ
+          </button>
+        </nav>
+
+        <div class="stage-frame">
+          <canvas id="gameCanvas" width="960" height="600"></canvas>
+          <div class="stage-message" id="stageMessage"></div>
+        </div>
+
+        <div class="playbar">
+          <button class="primary-button" id="startButton" type="button">スタート</button>
+          <button class="quiet-button" id="resetButton" type="button">リセット</button>
+          <button class="quiet-button sound-button" id="soundButton" type="button">音 ON</button>
+          <div class="meter-line">
+            <span id="timerLabel">じかん 0</span>
+            <span id="scoreLabel">スコア 0</span>
+          </div>
+        </div>
+
+        <div class="touch-controls" aria-label="そうさ">
+          <div class="stick-zone" id="stickZone" aria-label="バーチャルスティック">
+            <div class="stick-base">
+              <div class="stick-knob" id="stickKnob"></div>
+            </div>
+          </div>
+          <button class="jump-button" id="jumpButton" type="button">ジャンプ</button>
+        </div>
+      </section>
+
+      <aside class="tuning-panel" aria-label="かいぞう">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">かいぞうラボ</p>
+            <h2>ステータス</h2>
+          </div>
+        </div>
+
+        <div class="type-picker" id="typePicker" aria-label="タイプ"></div>
+
+        <div class="section-label">すがた</div>
+        <div class="appearance-picker" id="appearancePicker" aria-label="モンスターのすがた"></div>
+
+        <div class="section-label stat-heading">
+          <span>パラメータ</span>
+          <div class="points-box points-box--inline">
+            <span>のこり</span>
+            <strong id="pointsLeft">0</strong>
+          </div>
+        </div>
+        <div class="stat-list" id="statList"></div>
+
+        <div class="lab-note">
+          <strong id="challengeTitle">おたからあつめ</strong>
+          <span id="challengeHint">はやさだけ上げると、まがるのがむずかしくなります。</span>
+        </div>
+      </aside>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>
